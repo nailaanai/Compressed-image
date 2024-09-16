@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Compression</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Kompresi Gambar</h1>
+    
+    <!-- Form untuk unggah gambar -->
+    <form action="/compress" method="POST" enctype="multipart/form-data">
+      <div>
+        <label for="image">Pilih Gambar:</label>
+        <input type="file" name="image" accept="image/*" required>
+      </div>
+
+      <div>
+        <label for="algorithm">Pilih Algoritma Kompresi:</label>
+        <select name="algorithm" required>
+          <option value="traditional">Tradisional (Kualitas 70%)</option>
+          <option value="dynamic">Dinamis (Berdasarkan Kecepatan)</option>
+        </select>
+      </div>
+
+      <button type="submit">Kompres Gambar</button>
+    </form>
+
+    <!-- Tampilkan hasil kompresi jika ada -->
+    <% if (originalImage && compressedImage) { %>
+      <h2>Hasil Perbandingan</h2>
+      <div class="images">
+        <div>
+          <h3>Gambar Asli</h3>
+          <img src="<%= originalImage %>" alt="Original Image">
+          <p>Ukuran: <%= originalSize / 1024 %> KB</p>
+        </div>
+        <div>
+          <h3>Gambar Terkompresi</h3>
+          <img src="<%= compressedImage %>" alt="Compressed Image">
+          <p>Ukuran: <%= compressedSize / 1024 %> KB</p>
+        </div>
+      </div>
+    <% } %>
+  </div>
+</body>
+</html>
